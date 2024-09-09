@@ -9,25 +9,25 @@ function App() {
             <h1>Select Dropdowns with Context</h1>
             <Select
                 name="select1"
-                endpoint="https://api.example.com/options/select1"
+                endpoint="http://localhost:3000/options/select1"
                 resetOthersOnChange={['select2', 'select3']}
             />
             <Select
                 name="select2"
-                endpoint="https://api.example.com/options/select2"
+                endpoint="http://localhost:3000/options/select2"
                 resetOthersOnChange={['select4', 'select5']}
             />
             <Select
                 name="select3"
-                endpoint="https://api.example.com/options/select3"
+                endpoint="http://localhost:3000/options/select1"
             />
             <Select
                 name="select4"
-                endpoint="https://api.example.com/options/select4"
+                endpoint="http://localhost:3000/options/select2"
             />
             <Select
                 name="select5"
-                endpoint="https://api.example.com/options/select5"
+                endpoint="http://localhost:3000/options/select1"
             />
         </SelectProvider>
     )

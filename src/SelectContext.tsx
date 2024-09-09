@@ -36,6 +36,7 @@ export const SelectProvider: React.FC<{ children: React.ReactNode }> = ({childre
         try {
             const response = await fetch(endpoint);
             const data = await response.json();
+            console.log("data", data);
             setOptions((prevOptions) => ({...prevOptions, [name]: data}));
         } catch (error) {
             console.error(`Failed to load options for ${name} from ${endpoint}`, error);
