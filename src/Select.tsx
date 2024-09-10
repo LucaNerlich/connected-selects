@@ -15,9 +15,6 @@ const Select: React.FC<SelectProps> = ({name, endpoint, resetOthersOnChange = []
         if (resetOthersOnChange.length > 0) {
             resetSelect(resetOthersOnChange);
         }
-
-        // Re-fetch options after selection change
-        fetchOptions(name, buildEndpoint());
     };
 
     const buildEndpoint = useCallback(() => {
@@ -26,8 +23,9 @@ const Select: React.FC<SelectProps> = ({name, endpoint, resetOthersOnChange = []
     }, [endpoint]);
 
     useEffect(() => {
+        // Also re-fetch options after selection (values) change
         fetchOptions(name, buildEndpoint());
-    }, [name, endpoint, fetchOptions, buildEndpoint]);
+    }, [values, name, endpoint, fetchOptions, buildEndpoint]);
 
     const isLoading = loading[name];
     const selectOptions = options[name] || [];
