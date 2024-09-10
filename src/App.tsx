@@ -21,25 +21,30 @@ function App() {
                     name={ID_USE_CASE}
                     endpoint="http://localhost:3000/options/usecase"
                     resetOthersOnChange={[ID_LANG, ID_BRAND, ID_REGION, ID_APP]}
+                    refreshOnChange={[ID_USE_CASE, ID_LANG, ID_BRAND, ID_REGION, ID_APP]}
                 />
                 <Select
                     name={ID_LANG}
                     endpoint="http://localhost:3000/options/lang"
                     resetOthersOnChange={[ID_BRAND, ID_REGION, ID_APP]}
+                    refreshOnChange={[ID_LANG, ID_BRAND, ID_REGION, ID_APP]}
                 />
                 <Select
                     name={ID_BRAND}
                     endpoint="http://localhost:3000/options/brand"
                     resetOthersOnChange={[ID_REGION, ID_APP]}
+                    refreshOnChange={[ID_BRAND, ID_REGION, ID_APP]}
                 />
                 <Select
                     name={ID_REGION}
                     endpoint="http://localhost:3000/options/region"
                     resetOthersOnChange={[ID_APP]}
+                    refreshOnChange={[ID_REGION, ID_APP]}
                 />
                 <Select
                     name={ID_APP}
                     endpoint="http://localhost:3000/options/app"
+                    refreshOnChange={[ID_APP]}
                 />
                 <br/>
                 <UrlResult/>

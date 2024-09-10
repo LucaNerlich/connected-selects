@@ -5,6 +5,7 @@ interface SelectProps {
     name: string;
     endpoint: string;
     resetOthersOnChange?: string[];
+    refreshOnChange?: string[];
 }
 
 const Select: React.FC<SelectProps> = ({name, endpoint, resetOthersOnChange = []}) => {
