@@ -3,7 +3,7 @@ import {SelectProvider} from "./SelectContext.tsx";
 import Select from "./Select.tsx";
 import UrlResult from "./UrlResult.tsx";
 
-export const ID_ENV = "env";
+export const ID_LANG = "lang";
 export const ID_USE_CASE = "usecase";
 export const ID_BRAND = "brand";
 export const ID_REGION = "region";
@@ -20,11 +20,11 @@ function App() {
                 <Select
                     name={ID_USE_CASE}
                     endpoint="http://localhost:3000/options/usecase"
-                    resetOthersOnChange={[ID_ENV, ID_BRAND]}
+                    resetOthersOnChange={[ID_LANG, ID_BRAND]}
                 />
                 <Select
-                    name={ID_ENV}
-                    endpoint="http://localhost:3000/options/select2"
+                    name={ID_LANG}
+                    endpoint="http://localhost:3000/options/lang"
                     resetOthersOnChange={[ID_REGION, ID_APP]}
                 />
                 <Select
@@ -33,11 +33,11 @@ function App() {
                 />
                 <Select
                     name={ID_REGION}
-                    endpoint="http://localhost:3000/options/select2"
+                    endpoint="http://localhost:3000/options/region"
                 />
                 <Select
                     name={ID_APP}
-                    endpoint="http://localhost:3000/options/select1"
+                    endpoint="http://localhost:3000/options/app"
                 />
                 <br/>
                 <UrlResult/>

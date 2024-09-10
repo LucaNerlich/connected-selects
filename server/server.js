@@ -5,7 +5,8 @@ const port = 3000;
 
 app.use(cors());
 
-// Sample data to be returned
+// /oru/audi/eu/ota/rn-2023-03-14-ftkm/de-de/tech-1-2/mode-day/index.html
+
 const brandOptions = [
     "Audi",
     "VW",
@@ -18,6 +19,21 @@ const useCaseOptions = [
     "AEC",
 ];
 
+const appOptions = [
+    "ota",
+];
+
+const regionOptions = [
+    "eu",
+    "nar",
+    "svw",
+];
+
+const langOptions = [
+    "de-de",
+    "en-gb",
+];
+
 // Routes returning JSON data
 app.get('/options/brand', (req, res) => {
     res.json(brandOptions);
@@ -25,6 +41,18 @@ app.get('/options/brand', (req, res) => {
 
 app.get('/options/usecase', (req, res) => {
     res.json(useCaseOptions);
+});
+
+app.get('/options/app', (req, res) => {
+    res.json(appOptions);
+});
+
+app.get('/options/lang', (req, res) => {
+    res.json(langOptions);
+});
+
+app.get('/options/region', (req, res) => {
+    res.json(regionOptions);
 });
 
 app.listen(port, () => {
