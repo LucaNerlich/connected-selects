@@ -14,6 +14,7 @@ const Select: React.FC<SelectProps> = ({name, endpoint, resetOthersOnChange = []
         const newValue = event.target.value;
         setSelectValue(name, newValue);
 
+        // on change, reset dependent selects and re-fetch their options
         if (resetOthersOnChange.length > 0) {
             resetSelect([...resetOthersOnChange]);
             resetOthersOnChange.forEach((dependentSelect) => {
@@ -22,6 +23,7 @@ const Select: React.FC<SelectProps> = ({name, endpoint, resetOthersOnChange = []
         }
     };
 
+    // todo make endpoint dynamic, based on selected values
     const buildEndpoint = useCallback(() => endpoint, [endpoint]);
 
     useEffect(() => {
