@@ -1,4 +1,4 @@
-import React, {createContext, useCallback, useContext, useState} from 'react';
+import React, {createContext, useCallback, useContext, useReducer} from 'react';
 
 interface SelectContextProps {
     values: Record<string, string>;
@@ -11,42 +11,64 @@ interface SelectContextProps {
 
 const SelectContext = createContext<SelectContextProps | undefined>(undefined);
 
+const initialState = {
+    values: {} as Record<string, string>,
+    options: {} as Record<string, string[]>,
+    loading: {} as Record<string, boolean>
+};
+
+type Action =
+    | { type: 'SET_VALUE', name: string, value: string }
+    | { type: 'RESET_VALUES', names: string[] }
+    | { type: 'SET_OPTIONS', name: string, options: string[] }
+    | { type: 'SET_LOADING', name: string, loading: boolean };
+
+function reducer(state: typeof initialState, action: Action) {
+    switch (action.type) {
+        case 'SET_VALUE':
+            return {...state, values: {...state.values, [action.name]: action.value}};
+        case 'RESET_VALUES': {
+            const newValues = {...state.values};
+            action.names.forEach(name => {
+                newValues[name] = '';
+            });
+            return {...state, values: newValues};
+        }
+        case 'SET_OPTIONS':
+            return {...state, options: {...state.options, [action.name]: action.options}};
+        case 'SET_LOADING':
+            return {...state, loading: {...state.loading, [action.name]: action.loading}};
+        default:
+            return state;
+    }
+}
+
 export const SelectProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
-    const [values, setValues] = useState<Record<string, string>>({});
-    const [options, setOptions] = useState<Record<string, string[]>>({});
-    const [loading, setLoading] = useState<Record<string, boolean>>({});
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     const setSelectValue = useCallback((name: string, value: string) => {
-        setValues((prevValues) => ({...prevValues, [name]: value}));
+        dispatch({type: 'SET_VALUE', name, value});
     }, []);
 
     const resetSelect = useCallback((names: string[]) => {
-        setValues((prevValues) => {
-            const newValues = {...prevValues};
-            names.forEach((name) => {
-                newValues[name] = '';
-            });
-            return newValues;
-        });
+        dispatch({type: 'RESET_VALUES', names});
     }, []);
 
-    // useCallback, since it does not change on rerender, infinite loop otherwise.
     const fetchOptions = useCallback(async (name: string, endpoint: string) => {
-        setLoading((prevLoading) => ({...prevLoading, [name]: true}));
+        dispatch({type: 'SET_LOADING', name, loading: true});
         try {
             const response = await fetch(endpoint);
             const data = await response.json();
-            console.log("data", data);
-            setOptions((prevOptions) => ({...prevOptions, [name]: data}));
+            dispatch({type: 'SET_OPTIONS', name, options: data});
         } catch (error) {
             console.error(`Failed to load options for ${name} from ${endpoint}`, error);
         } finally {
-            setLoading((prevLoading) => ({...prevLoading, [name]: false}));
+            dispatch({type: 'SET_LOADING', name, loading: false});
         }
     }, []);
 
     return (
-        <SelectContext.Provider value={{values, options, loading, setSelectValue, resetSelect, fetchOptions}}>
+        <SelectContext.Provider value={{...state, setSelectValue, resetSelect, fetchOptions}}>
             {children}
         </SelectContext.Provider>
     );
