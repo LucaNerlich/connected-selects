@@ -1,6 +1,6 @@
-import React, {createContext, useCallback, useContext, useReducer} from 'react';
+import React, {createContext, useCallback, useReducer} from 'react';
 
-interface SelectContextProps {
+export interface SelectContextProps {
     values: Record<string, string>;
     options: Record<string, string[]>;
     loading: Record<string, boolean>;
@@ -9,7 +9,7 @@ interface SelectContextProps {
     fetchOptions: (name: string, endpoint: string) => void;
 }
 
-const SelectContext = createContext<SelectContextProps | undefined>(undefined);
+export const SelectContext = createContext<SelectContextProps | undefined>(undefined);
 
 const initialState = {
     values: {} as Record<string, string>,
@@ -74,10 +74,4 @@ export const SelectProvider: React.FC<{ children: React.ReactNode }> = ({childre
     );
 };
 
-export const useSelectContext = (): SelectContextProps => {
-    const context = useContext(SelectContext);
-    if (!context) {
-        throw new Error('useSelectContext must be used within a SelectProvider');
-    }
-    return context;
-};
+

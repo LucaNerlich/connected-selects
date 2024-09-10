@@ -1,7 +1,6 @@
 import React from 'react';
-import {useSelectContext} from "./SelectContext.tsx";
 import {ID_APP, ID_BRAND, ID_LANG, ID_REGION, ID_USE_CASE} from "./App.tsx";
-
+import {useSelectContext} from "./UseSelectContext.tsx";
 
 export default function UrlResult(): React.ReactElement {
     const {values} = useSelectContext();

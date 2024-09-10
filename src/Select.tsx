@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect} from 'react';
-import {useSelectContext} from "./SelectContext.tsx";
+import {useSelectContext} from "./UseSelectContext.tsx";
 
 interface SelectProps {
     name: string;
