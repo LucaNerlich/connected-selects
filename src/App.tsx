@@ -20,20 +20,22 @@ function App() {
                 <Select
                     name={ID_USE_CASE}
                     endpoint="http://localhost:3000/options/usecase"
-                    resetOthersOnChange={[ID_LANG, ID_BRAND]}
+                    resetOthersOnChange={[ID_LANG, ID_BRAND, ID_REGION, ID_APP]}
                 />
                 <Select
                     name={ID_LANG}
                     endpoint="http://localhost:3000/options/lang"
-                    resetOthersOnChange={[ID_REGION, ID_APP]}
+                    resetOthersOnChange={[ID_BRAND, ID_REGION, ID_APP]}
                 />
                 <Select
                     name={ID_BRAND}
                     endpoint="http://localhost:3000/options/brand"
+                    resetOthersOnChange={[ID_REGION, ID_APP]}
                 />
                 <Select
                     name={ID_REGION}
                     endpoint="http://localhost:3000/options/region"
+                    resetOthersOnChange={[ID_APP]}
                 />
                 <Select
                     name={ID_APP}
