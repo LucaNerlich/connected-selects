@@ -1,6 +1,7 @@
 import './App.css'
 import {SelectProvider} from "./SelectContext.tsx";
 import Select from "./Select.tsx";
+import UrlResult from "./UrlResult.tsx";
 
 export const ID_ENV = "env";
 export const ID_USE_CASE = "usecase";
@@ -18,7 +19,7 @@ function App() {
                 <h1>Select Dropdowns with Context</h1>
                 <Select
                     name={ID_USE_CASE}
-                    endpoint="http://localhost:3000/options/select1"
+                    endpoint="http://localhost:3000/options/usecase"
                     resetOthersOnChange={[ID_ENV, ID_BRAND]}
                 />
                 <Select
@@ -28,7 +29,7 @@ function App() {
                 />
                 <Select
                     name={ID_BRAND}
-                    endpoint="http://localhost:3000/options/select1"
+                    endpoint="http://localhost:3000/options/brand"
                 />
                 <Select
                     name={ID_REGION}
@@ -38,6 +39,8 @@ function App() {
                     name={ID_APP}
                     endpoint="http://localhost:3000/options/select1"
                 />
+                <br/>
+                <UrlResult/>
             </SelectProvider>
         </form>
     )

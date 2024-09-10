@@ -6,25 +6,25 @@ const port = 3000;
 app.use(cors());
 
 // Sample data to be returned
-const select1Options = [
-    "Option 1",
-    "Option 2",
-    "Option 3",
+const brandOptions = [
+    "Audi",
+    "VW",
+    "SKODA",
 ];
 
-const select2Options = [
-    "Option 4",
-    "Option 5",
-    "Option 6",
+const useCaseOptions = [
+    "ORU",
+    "ICA",
+    "AEC",
 ];
 
 // Routes returning JSON data
-app.get('/options/select1', (req, res) => {
-    res.json(select1Options);
+app.get('/options/brand', (req, res) => {
+    res.json(brandOptions);
 });
 
-app.get('/options/select2', (req, res) => {
-    res.json(select2Options);
+app.get('/options/usecase', (req, res) => {
+    res.json(useCaseOptions);
 });
 
 app.listen(port, () => {

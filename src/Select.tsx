@@ -30,14 +30,17 @@ const Select: React.FC<SelectProps> = ({name, endpoint, resetOthersOnChange = []
     const selectOptions = options[name] || [];
 
     return (
-        <select name={name} value={values[name] || ''} onChange={handleChange} disabled={isLoading}>
-            <option value="">Select an option</option>
-            {selectOptions.map((option) => (
-                <option key={option} value={option}>
-                    {option}
-                </option>
-            ))}
-        </select>
+        <div style={{textAlign: 'left'}}>
+            <select name={name} value={values[name] || ''} onChange={handleChange} disabled={isLoading}>
+                <option value="">Select an option</option>
+                {selectOptions.map((option) => (
+                    <option key={option} value={option}>
+                        {option}
+                    </option>
+                ))}
+            </select>
+            <p style={{display: 'inline-block', marginLeft: '1rem'}}>{name}</p>
+        </div>
     );
 };
 
