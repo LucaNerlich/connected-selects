@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {useSelectContext} from "./SelectContext.tsx";
 
 interface SelectProps {
@@ -17,15 +17,20 @@ const Select: React.FC<SelectProps> = ({name, endpoint, resetOthersOnChange = []
         }
     };
 
+    const buildEndpoint = useCallback(() => {
+        // todo pass url template via props
+        return endpoint;
+    }, [endpoint]);
+
     useEffect(() => {
-        fetchOptions(name, endpoint);
-    }, [name, endpoint, fetchOptions]);
+        fetchOptions(name, buildEndpoint());
+    }, [name, endpoint, fetchOptions, buildEndpoint]);
 
     const isLoading = loading[name];
     const selectOptions = options[name] || [];
 
     return (
-        <select value={values[name] || ''} onChange={handleChange} disabled={isLoading}>
+        <select name={name} value={values[name] || ''} onChange={handleChange} disabled={isLoading}>
             <option value="">Select an option</option>
             {selectOptions.map((option) => (
                 <option key={option} value={option}>

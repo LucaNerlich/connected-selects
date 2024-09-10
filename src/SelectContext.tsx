@@ -30,7 +30,7 @@ export const SelectProvider: React.FC<{ children: React.ReactNode }> = ({childre
         });
     }, []);
 
-    // useCallback, since it does not change on rerender, infinite loop otherwise
+    // useCallback, since it does not change on rerender, infinite loop otherwise.
     const fetchOptions = useCallback(async (name: string, endpoint: string) => {
         setLoading((prevLoading) => ({...prevLoading, [name]: true}));
         try {
