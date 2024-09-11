@@ -12,6 +12,13 @@ const generateUrl = (values: Record<ID, string>): string => {
     return `https://endpoint.com/${useCase}/${brand}/${region}/${app}/${lang}/index.html`.toLowerCase();
 };
 
+/**
+ * UrlResult is a functional component that retrieves the current values from
+ * the selection context and generates a URL based on these values.
+ * It displays the URL within a blockquote element.
+ *
+ * @return {React.ReactElement} A React element that includes the generated URL.
+ */
 export default function UrlResult(): React.ReactElement {
     const {values} = useSelectContext();
 
