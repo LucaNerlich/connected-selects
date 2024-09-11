@@ -8,6 +8,11 @@
   * [Expanding the ESLint configuration](#expanding-the-eslint-configuration)
 <!-- TOC -->
 
+A react tech-demo app, that renders a set of select dropdown html form elements, which reset and re-fetch their options
+dependent on the state of other selects.
+
+A express backend server is being used to supply demo data.
+
 ## Local Dev Server
 
 1. `cd ./server`
