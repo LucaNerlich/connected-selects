@@ -4,3 +4,12 @@
     padding: 2rem;
     text-align: center;
 }
+
+
+select {
+    padding: 0.5rem;
+}
+
+blockquote {
+    border-left: 1px solid deepskyblue;
+}

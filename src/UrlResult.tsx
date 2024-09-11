@@ -7,11 +7,9 @@ export default function UrlResult(): React.ReactElement {
 
     // /oru/audi/eu/ota/rn-2023-03-14-ftkm/de-de/tech-1-2/mode-day/index.html
 
-    const buildEndpoint = () => {
-        return `https://endpoint.com/${values[ID_USE_CASE]}/${values[ID_BRAND]}/${values[ID_REGION]}/${values[ID_APP]}/${values[ID_LANG]}/index.html`.toLowerCase()
-    }
-
     return (
-        <p>{buildEndpoint()}</p>
+        <blockquote>
+            {`https://endpoint.com/${values[ID_USE_CASE]}/${values[ID_BRAND]}/${values[ID_REGION]}/${values[ID_APP]}/${values[ID_LANG]}/index.html`.toLowerCase()}
+        </blockquote>
     )
 }
