@@ -16,33 +16,35 @@ function App() {
     return (
         <form>
             <SelectProvider>
-
                 <h1>Select Dropdowns with Context</h1>
                 <div className="select-container">
                     <Select
                         name={ID_USE_CASE}
                         endpoint="http://localhost:3000/options/usecase"
-                        resetOthersOnChange={[ID_LANG, ID_BRAND, ID_REGION, ID_APP]}
-                    />
-                    <Select
-                        name={ID_LANG}
-                        endpoint="http://localhost:3000/options/lang"
-                        resetOthersOnChange={[ID_BRAND, ID_REGION, ID_APP]}
+                        resetOthersOnChange={[ID_BRAND, ID_REGION, ID_APP, ID_LANG]}
                     />
                     <Select
                         name={ID_BRAND}
                         endpoint="http://localhost:3000/options/brand"
-                        resetOthersOnChange={[ID_REGION, ID_APP]}
+                        resetOthersOnChange={[ID_REGION, ID_APP, ID_LANG]}
+                        disableIfEmpty={[ID_USE_CASE]}
                     />
                     <Select
                         name={ID_REGION}
                         endpoint="http://localhost:3000/options/region"
-                        resetOthersOnChange={[ID_APP]}
+                        resetOthersOnChange={[ID_APP, ID_LANG]}
+                        disableIfEmpty={[ID_USE_CASE, ID_BRAND]}
                     />
                     <Select
                         name={ID_APP}
                         endpoint="http://localhost:3000/options/app"
-                        disableIfEmpty={[ID_LANG, ID_BRAND, ID_REGION, ID_APP]}
+                        resetOthersOnChange={[ID_LANG]}
+                        disableIfEmpty={[ID_USE_CASE, ID_BRAND, ID_REGION]}
+                    />
+                    <Select
+                        name={ID_LANG}
+                        endpoint="http://localhost:3000/options/lang"
+                        disableIfEmpty={[ID_USE_CASE, ID_BRAND, ID_REGION, ID_APP]}
                     />
                 </div>
                 <UrlResult/>

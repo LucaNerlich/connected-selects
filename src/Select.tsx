@@ -5,9 +5,10 @@ interface SelectProps {
     name: string;
     endpoint: string;
     resetOthersOnChange?: string[];
+    disableIfEmpty?: string[];
 }
 
-const Select: React.FC<SelectProps> = ({name, endpoint, resetOthersOnChange = []}) => {
+const Select: React.FC<SelectProps> = ({name, endpoint, resetOthersOnChange = [], disableIfEmpty = []}) => {
     const {values, options, loading, setSelectValue, resetSelect, fetchOptions} = useSelectContext();
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -32,10 +33,11 @@ const Select: React.FC<SelectProps> = ({name, endpoint, resetOthersOnChange = []
 
     const isLoading = loading[name];
     const selectOptions = options[name] || [];
+    const disabled = disableIfEmpty.some(select => values[select] == undefined || values[select] === '');
 
     return (
         <div style={{textAlign: 'left'}}>
-            <select name={name} value={values[name] || ''} onChange={handleChange} disabled={isLoading}>
+            <select name={name} value={values[name] || ''} onChange={handleChange} disabled={disabled || isLoading}>
                 <option value="">Select an option</option>
                 {selectOptions.map((option) => (
                     <option key={option} value={option}>
