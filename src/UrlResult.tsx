@@ -8,7 +8,7 @@ export default function UrlResult(): React.ReactElement {
     // /oru/audi/eu/ota/rn-2023-03-14-ftkm/de-de/tech-1-2/mode-day/index.html
     return (
         <blockquote>
-            {`https://endpoint.com/${values[ID.USE_CASE]}/${values[ID.BRAND]}/${values[ID.REGION]}/${values[ID.APP]}/${values[ID.LANG]}/index.html`.toLowerCase()}
+            <strong>URL</strong> {`https://endpoint.com/${values[ID.USE_CASE]}/${values[ID.BRAND]}/${values[ID.REGION]}/${values[ID.APP]}/${values[ID.LANG]}/index.html`.toLowerCase()}
         </blockquote>
     )
 }
