@@ -2,49 +2,42 @@ import './App.css'
 import {SelectProvider} from "./SelectContext.tsx";
 import Select from "./Select.tsx";
 import UrlResult from "./UrlResult.tsx";
-
-export const ID_LANG = "lang";
-export const ID_USE_CASE = "usecase";
-export const ID_BRAND = "brand";
-export const ID_REGION = "region";
-export const ID_APP = "app";
+import {ID} from "./ID.ts";
 
 function App() {
-
     // /oru/audi/eu/ota/rn-2023-03-14-ftkm/de-de/tech-1-2/mode-day/index.html
-
     return (
         <form>
             <SelectProvider>
                 <h1>Select Dropdowns with Context</h1>
                 <div className="select-container">
                     <Select
-                        name={ID_USE_CASE}
+                        id={ID.USE_CASE}
                         endpoint="http://localhost:3000/options/usecase"
-                        resetOthersOnChange={[ID_BRAND, ID_REGION, ID_APP, ID_LANG]}
+                        resetOthersOnChange={[ID.BRAND, ID.REGION, ID.APP, ID.LANG]}
                     />
                     <Select
-                        name={ID_BRAND}
+                        id={ID.BRAND}
                         endpoint="http://localhost:3000/options/brand"
-                        resetOthersOnChange={[ID_REGION, ID_APP, ID_LANG]}
-                        disableIfEmpty={[ID_USE_CASE]}
+                        resetOthersOnChange={[ID.REGION, ID.APP, ID.LANG]}
+                        disableIfEmpty={[ID.USE_CASE]}
                     />
                     <Select
-                        name={ID_REGION}
+                        id={ID.REGION}
                         endpoint="http://localhost:3000/options/region"
-                        resetOthersOnChange={[ID_APP, ID_LANG]}
-                        disableIfEmpty={[ID_USE_CASE, ID_BRAND]}
+                        resetOthersOnChange={[ID.APP, ID.LANG]}
+                        disableIfEmpty={[ID.USE_CASE, ID.BRAND]}
                     />
                     <Select
-                        name={ID_APP}
+                        id={ID.APP}
                         endpoint="http://localhost:3000/options/app"
-                        resetOthersOnChange={[ID_LANG]}
-                        disableIfEmpty={[ID_USE_CASE, ID_BRAND, ID_REGION]}
+                        resetOthersOnChange={[ID.LANG]}
+                        disableIfEmpty={[ID.USE_CASE, ID.BRAND, ID.REGION]}
                     />
                     <Select
-                        name={ID_LANG}
+                        id={ID.LANG}
                         endpoint="http://localhost:3000/options/lang"
-                        disableIfEmpty={[ID_USE_CASE, ID_BRAND, ID_REGION, ID_APP]}
+                        disableIfEmpty={[ID.USE_CASE, ID.BRAND, ID.REGION, ID.APP]}
                     />
                 </div>
                 <UrlResult/>
@@ -54,5 +47,3 @@ function App() {
 }
 
 export default App
-
-
